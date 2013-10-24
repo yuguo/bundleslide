@@ -36,7 +36,8 @@
         widthTemp = 0;
         widthArray = [];
         $('.sugarslide-controller', element).children().each(function(i, that){
-            var thisWidth = $(that).outerWidth();
+            var childElement = $(that);
+            var thisWidth = childElement.outerWidth() + parseInt(childElement.css('marginRight')) + parseInt(childElement.css('marginLeft'));
             if(intFrameWidth >= thisWidth){
                 if(intFrameWidth - widthTemp >  thisWidth){
                     widthTemp += thisWidth;
@@ -56,6 +57,8 @@
                 widthArray.push(widthTemp);
             }
         });
+
+        console.log(widthArray);
 
         // next and previous
         currentPage = 0;
