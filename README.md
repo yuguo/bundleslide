@@ -1,7 +1,7 @@
 Sugar Slide
 ===========
 
-Sugar Slide can slide with flexible width. [Demo](http://yuguo.us/demo/sugarslide.html).
+Sugar Slide can slide with flexible width. [Demo](http://yuguo.us/demo/sugar-slide/index.html).
 
 ## Start
 
