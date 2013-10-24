@@ -1,9 +1,8 @@
 /**
- * Created with JetBrains WebStorm.
  * User: yuguo
  * Date: 13-10-24
- * Time: 下午3:03
- * To change this template use File | Settings | File Templates.
+ * Time: 3:03 pm
+ * https://github.com/yuguo/sugarslide/
  */
 
 (function( $ ) {
@@ -38,7 +37,7 @@
         widthArray = [];
         $('.sugarslide-controller', element).children().each(function(i, that){
             var thisWidth = $(that).outerWidth();
-            if(intFrameWidth > thisWidth){
+            if(intFrameWidth >= thisWidth){
                 if(intFrameWidth - widthTemp >  thisWidth){
                     widthTemp += thisWidth;
                 }else{
@@ -46,7 +45,9 @@
                     widthTemp = thisWidth;
                 }
             }else{
-                widthArray.push(widthTemp);
+                if(widthTemp != 0){
+                    widthArray.push(widthTemp);
+                }
                 widthArray.push(thisWidth);
                 widthTemp = 0;
             }
@@ -58,7 +59,7 @@
 
         // next and previous
         currentPage = 0;
-        $(".sugarslide-next").click(function(e) {
+        $('.'+settings.nextClass).click(function(e) {
             e.preventDefault();
             if(currentPage < widthArray.length - 1){
                 $('.sugarslide-controller', element).animate({
@@ -74,7 +75,7 @@
                 currentPage = 0;
             }
         });
-        $(".sugarslide-previous").click(function(e) {
+        $('.'+settings.prevClass).click(function(e) {
             e.preventDefault();
             if(currentPage > 0){
                 $('.sugarslide-controller', element).animate({
