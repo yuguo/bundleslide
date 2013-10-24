@@ -1,57 +1,76 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>bundlewidth jquery plugin test</title>
+    <title>sugar slide jquery plugin test</title>
     <style type="text/css">
     * {margin:0; padding:0;}
 
     /* slider */
 
     #slide {height: 222px; overflow: hidden; position: relative; }
-    #slide .slider-item { padding:0; margin-right: 1px;display: block; height: 222px; width: 192px; float:left;position:relative; }
+    #slide .slider-item { padding:0; border-right: 1px solid #fff;display: block; height: 222px; width: 200px; float:left;position:relative; }
     #slide .slider-item h4 {background-color: rgba(0,0,0,0.7); height: 48px; position:absolute; bottom: 0;left:0;
         width: 100%; font-size:12px; color:#fff; font-weight:normal; padding: 9px 10px; margin:0; box-sizing: border-box;}
     #slide .slider-item .price-tag {position: absolute; bottom: 54px; left:0; background-color: rgba(0,0,0,0.7);
         color:#fff; padding: 0px 5px 0px 10px; border-bottom-right-radius: 8px; border-top-right-radius: 8px; font-weight: bold;
         font-size: 12px;}
-    #slide .slider-item.width-bundle-1 {width:192px;}
-    #slide .slider-item.width-bundle-2 {width:384px;}
-    #slide .slider-item.width-bundle-3 {width:576px;}
-    #slide .slider-item.width-bundle-4 {width:768px;}
-    #slide .bundleslide-previous {position: absolute; left:0; top: 100px;}
-    #slide .bundleslide-next {position: absolute; right:0; top: 100px;}
+    #slide .slider-item.width-bundle-1 {width:200px;}
+    #slide .slider-item.width-bundle-2 {width:400px;}
+    #slide .slider-item.width-bundle-3 {width:600px;}
+    #slide .slider-item.width-bundle-4 {width:800px;}
+    #slide .sugarslide-previous {position: absolute; left:0; top: 100px;}
+    #slide .sugarslide-next {position: absolute; right:0; top: 100px;}
 
     </style>
 </head>
 <body>
 <div id="slide">
-    <a class="slider-item width-bundle-1" data-bundle-width="1" style="background-image: url(http://getimg.in/192x222)">
+    <a class="slider-item width-bundle-1" style="background-image: url(http://getimg.in/200x222)">
         <h4 class="item-name">some name really really really really really long</h4>
         <span class="price-tag">$45.54</span>
     </a>
-    <a class="slider-item width-bundle-2" data-bundle-width="2" style="background-image: url(http://getimg.in/384x222)">
+    <a class="slider-item width-bundle-2" style="background-image: url(http://getimg.in/400x222)">
         <h4 class="item-name">some name really really really really really long</h4>
         <span class="price-tag">$45.54</span>
     </a>
-    <a class="slider-item width-bundle-3"  data-bundle-width="3" style="background-image: url(http://getimg.in/576x222)">
+    <a class="slider-item width-bundle-3" style="background-image: url(http://getimg.in/600x222)">
         <h4 class="item-name">some name really really really really really long</h4>
         <span class="price-tag">$45.54</span>
     </a>
-    <a class="slider-item width-bundle-4"  data-bundle-width="4" style="background-image: url(http://getimg.in/768x222)">
+    <a class="slider-item width-bundle-4" style="background-image: url(http://getimg.in/800x222)">
         <h4 class="item-name">some name really really really really really long</h4>
         <span class="price-tag">$45.54</span>
     </a>
-    <a class="slider-item width-bundle-1"  data-bundle-width="1" style="background-image: url(http://getimg.in/192x222)">
+    <a class="slider-item width-bundle-1"  style="background-image: url(http://getimg.in/200x222)">
+        <h4 class="item-name">some name really really really really really long</h4>
+        <span class="price-tag">$45.54</span>
+    </a>
+    <a class="slider-item width-bundle-1"  style="background-image: url(http://getimg.in/200x222)">
+        <h4 class="item-name">some name really really really really really long</h4>
+        <span class="price-tag">$45.54</span>
+    </a>
+    <a class="slider-item width-bundle-1"  style="background-image: url(http://getimg.in/200x222)">
+        <h4 class="item-name">some name really really really really really long</h4>
+        <span class="price-tag">$45.54</span>
+    </a>
+    <a class="slider-item width-bundle-1"  style="background-image: url(http://getimg.in/200x222)">
+        <h4 class="item-name">some name really really really really really long</h4>
+        <span class="price-tag">$45.54</span>
+    </a>
+    <a class="slider-item width-bundle-1"  style="background-image: url(http://getimg.in/200x222)">
+        <h4 class="item-name">some name really really really really really long</h4>
+        <span class="price-tag">$45.54</span>
+    </a>
+    <a class="slider-item width-bundle-2"  style="background-image: url(http://getimg.in/400x222)">
         <h4 class="item-name">some name really really really really really long</h4>
         <span class="price-tag">$45.54</span>
     </a>
 </div>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script type="text/javascript" src="jquery.bundleslide.js"></script>
+<script type="text/javascript" src="jquery.sugarslide.js"></script>
 <script type="text/javascript">
-    $('#slide').bundleSlide({
-        bundleWidth: 193,
-        width:500
+    $('#slide').sugarSlide({
+        time:700
     });
 </script>
 
