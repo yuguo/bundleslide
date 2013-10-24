@@ -25,7 +25,7 @@
         element
             .css('position', 'relative')
             .wrapInner('<div class="sugarslide-controller" style="width:1000%"/>')
-            .append('<a class="sugarslide-previous">Previous</a><a class="sugarslide-next">Next</a>');
+            .after('<a class="sugarslide-previous">Previous</a> <a class="sugarslide-next">Next</a>');
 
         $('.sugarslide-controller', element).css({
             'position':'absolute',
@@ -54,25 +54,33 @@
             }
         });
 
-        console.log(widthArray);
-
         // next and previous
         currentPage = 0;
-        $(".sugarslide-next", element).click(function(e) {
+        $(".sugarslide-next").click(function(e) {
             e.preventDefault();
-            $('.sugarslide-controller', element).animate({
-                left: "-="+ widthArray[currentPage]
-            }, settings.time, function() {
+            if(currentPage < widthArray.length - 1){
+                $('.sugarslide-controller', element).animate({
+                    left: "-="+ widthArray[currentPage]
+                }, settings.time, function() {
+                });
                 currentPage += 1;
-            });
+            }else{
+                $('.sugarslide-controller', element).animate({
+                    left: 0
+                }, settings.time, function() {
+                });
+                currentPage = 0;
+            }
         });
-        $(".sugarslide-previous", element).click(function(e) {
+        $(".sugarslide-previous").click(function(e) {
             e.preventDefault();
-            $('.sugarslide-controller', element).animate({
-                left: "+="+ widthArray[currentPage - 1]
-            }, settings.time, function() {
+            if(currentPage > 0){
+                $('.sugarslide-controller', element).animate({
+                    left: "+="+ widthArray[currentPage - 1]
+                }, settings.time, function() {
+                });
                 currentPage -= 1;
-            });
+            }
         });
 
         return this;
