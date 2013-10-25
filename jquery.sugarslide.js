@@ -62,25 +62,27 @@
         // next and previous
         currentPage = 0;
 
-        $('<a class="'+settings.nextClass+'"><span>Next</span></a>').insertAfter(element).end().click(function(e) {
+        element.after('<a class="'+settings.prevClass+ ' ' + settings.disabledClass +'"><span>Previous</span></a> <a class="'+settings.nextClass+'"><span>Next</span></a>');
+        $('.'+settings.nextClass).click(function(e) {
             e.preventDefault();
-            $('.'+settings.prevClass).removeClass(settings.disabledClass);
             if(currentPage < widthArray.length - 1){
                 $('.sugarslide-controller', element).animate({
                     left: "-="+ widthArray[currentPage]
                 }, settings.time, function() {
                 });
                 currentPage += 1;
+                $('.'+settings.prevClass).removeClass(settings.disabledClass);
             }else{
                 $('.sugarslide-controller', element).animate({
                     left: 0
                 }, settings.time, function() {
                 });
                 currentPage = 0;
+                $('.'+settings.prevClass).addClass(settings.disabledClass);
             }
         });
 
-        $('<a class="'+settings.prevClass+'"><span>Previous</span></a>').insertAfter(element).end().click(function(e) {
+        $('.'+settings.prevClass).click(function(e) {
             e.preventDefault();
             if(currentPage > 0){
                 $('.sugarslide-controller', element).animate({
@@ -88,9 +90,11 @@
                 }, settings.time, function() {
                 });
                 currentPage -= 1;
-                $(this).removeClass(settings.disabledClass);
+                if(currentPage == 0){
+                    $(this).addClass(settings.disabledClass);
+                }
             }else{
-                $(this).addClass(settings.disabledClass);
+                //do nothing
             }
         });
 
