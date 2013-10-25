@@ -39,7 +39,8 @@ Done.
 $('#slide').sugarSlide({
     time:700,
     prevClass:'prev',
-    nextClass:'next'
+    nextClass:'next',
+    disabledClass:'disabled'
 });
 ```
 
@@ -48,3 +49,5 @@ $('#slide').sugarSlide({
 `prevClass` is the previous link's class name, default value is `'sugarslide-previous'`.
 
 `nextClass` is the next link's class name, default value is `'sugarslide-next'`.
+
+`disabled` is the previous link's class when it's the first slide.

@@ -14,7 +14,8 @@
         settings = {
             time: 1000,
             prevClass: 'sugarslide-previous',
-            nextClass: 'sugarslide-next'
+            nextClass: 'sugarslide-next',
+            disabledClass: 'disabled'
         };
 
         $.extend(settings, options);
@@ -63,6 +64,7 @@
 
         $('<a class="'+settings.nextClass+'"><span>Next</span></a>').insertAfter(element).end().click(function(e) {
             e.preventDefault();
+            $('.'+settings.prevClass).removeClass(settings.disabledClass);
             if(currentPage < widthArray.length - 1){
                 $('.sugarslide-controller', element).animate({
                     left: "-="+ widthArray[currentPage]
@@ -86,8 +88,9 @@
                 }, settings.time, function() {
                 });
                 currentPage -= 1;
+                $(this).removeClass(settings.disabledClass);
             }else{
-                //do nothing
+                $(this).addClass(settings.disabledClass);
             }
         });
 
