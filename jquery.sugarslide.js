@@ -25,14 +25,14 @@
 
         element
             .css('position', 'relative')
-            .wrapInner('<div class="sugarslide-controller" style="width:1000%"/>')
-            .after('<a class="'+settings.prevClass+'">Previous</a> <a class="'+settings.nextClass+'">Next</a>');
+            .wrapInner('<div class="sugarslide-controller" style="width:1000%"/>');
 
         $('.sugarslide-controller', element).css({
             'position':'absolute',
             'left':'0'
         });
 
+        // calculate the width array
         widthTemp = 0;
         widthArray = [];
         $('.sugarslide-controller', element).children().each(function(i, that){
@@ -58,11 +58,10 @@
             }
         });
 
-        console.log(widthArray);
-
         // next and previous
         currentPage = 0;
-        $('.'+settings.nextClass).click(function(e) {
+
+        $('<a class="'+settings.nextClass+'"><span>Next</span></a>').insertAfter(element).end().click(function(e) {
             e.preventDefault();
             if(currentPage < widthArray.length - 1){
                 $('.sugarslide-controller', element).animate({
@@ -78,7 +77,8 @@
                 currentPage = 0;
             }
         });
-        $('.'+settings.prevClass).click(function(e) {
+
+        $('<a class="'+settings.prevClass+'"><span>Previous</span></a>').insertAfter(element).end().click(function(e) {
             e.preventDefault();
             if(currentPage > 0){
                 $('.sugarslide-controller', element).animate({
