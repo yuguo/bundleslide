@@ -87,11 +87,7 @@
                 });
                 currentPage -= 1;
             }else{
-                $('.sugarslide-controller', element).animate({
-                    left: "+="+ widthArray[currentPage - 1]
-                }, settings.time, function() {
-                });
-                currentPage -= 1;
+                //do nothing
             }
         });
 
