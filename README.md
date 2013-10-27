@@ -40,7 +40,8 @@ $('#slide').sugarSlide({
     time:700,
     prevClass:'prev',
     nextClass:'next',
-    disabledClass:'disabled'
+    disabledClass:'disabled',
+    autoSlideTime: 5000
 });
 ```
 
@@ -51,3 +52,5 @@ $('#slide').sugarSlide({
 `nextClass` is the next link's class name, default value is `'sugarslide-next'`.
 
 `disabled` is the previous link's class when it's the first slide.
+
+`autoSlideTime` is the gap time of every auto slide(ms).

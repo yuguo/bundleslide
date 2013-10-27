@@ -9,10 +9,11 @@
 
     $.fn.sugarSlide = function( options ) {
 
-        var settings, intFrameWidth, element, widthArray, widthTemp, currentPage;
+        var settings, intFrameWidth, element, widthArray, widthTemp, currentPage, slideToNextPage, slideToPreviousPage, slideToFirstPage, startAutoSlide, isAutoSlide;
 
         settings = {
             time: 1000,
+            autoSlideTime: 5000,
             prevClass: 'sugarslide-previous',
             nextClass: 'sugarslide-next',
             disabledClass: 'disabled'
@@ -26,7 +27,9 @@
 
         element
             .css('position', 'relative')
-            .wrapInner('<div class="sugarslide-controller" style="width:1000%"/>');
+            .wrapInner('<div class="sugarslide-controller" style="width:1000%"/>')
+            .mouseover(function(){isAutoSlide = false})
+            .mouseout(function(){isAutoSlide = true});
 
         $('.sugarslide-controller', element).css({
             'position':'absolute',
@@ -66,37 +69,65 @@
         $('.'+settings.nextClass).click(function(e) {
             e.preventDefault();
             if(currentPage < widthArray.length - 1){
-                $('.sugarslide-controller', element).animate({
-                    left: "-="+ widthArray[currentPage]
-                }, settings.time, function() {
-                });
-                currentPage += 1;
-                $('.'+settings.prevClass).removeClass(settings.disabledClass);
+                slideToNextPage();
             }else{
-                $('.sugarslide-controller', element).animate({
-                    left: 0
-                }, settings.time, function() {
-                });
-                currentPage = 0;
-                $('.'+settings.prevClass).addClass(settings.disabledClass);
+                slideToFirstPage();
             }
         });
 
         $('.'+settings.prevClass).click(function(e) {
             e.preventDefault();
             if(currentPage > 0){
-                $('.sugarslide-controller', element).animate({
-                    left: "+="+ widthArray[currentPage - 1]
-                }, settings.time, function() {
-                });
-                currentPage -= 1;
-                if(currentPage == 0){
-                    $(this).addClass(settings.disabledClass);
-                }
+                slideToPreviousPage();
             }else{
                 //do nothing
             }
         });
+
+        slideToNextPage = function(){
+            $('.sugarslide-controller', element).animate({
+                left: "-="+ widthArray[currentPage]
+            }, settings.time, function() {
+
+            });
+            currentPage += 1;
+            $('.'+settings.prevClass).removeClass(settings.disabledClass);
+        };
+
+        slideToPreviousPage = function(){
+            $('.sugarslide-controller', element).animate({
+                left: "+="+ widthArray[currentPage - 1]
+            }, settings.time, function() {
+            });
+            currentPage -= 1;
+            if(currentPage == 0){
+                $(this).addClass(settings.disabledClass);
+            }
+        };
+
+        slideToFirstPage = function(){
+            $('.sugarslide-controller', element).animate({
+                left: 0
+            }, settings.time, function() {
+            });
+            currentPage = 0;
+            $('.'+settings.prevClass).addClass(settings.disabledClass);
+        };
+
+        isAutoSlide = true;
+        startAutoSlide = function(){
+            window.setTimeout(startAutoSlide, settings.autoSlideTime);
+            if(isAutoSlide){
+                if(currentPage < widthArray.length - 1){
+                    slideToNextPage();
+                }else{
+                    slideToFirstPage();
+                }
+            }
+
+        };
+
+        startAutoSlide();
 
         return this;
 
