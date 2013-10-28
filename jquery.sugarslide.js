@@ -63,8 +63,6 @@
             }
         });
 
-        console.log(widthArray);
-
         // next and previous
         currentPage = 0;
 
@@ -119,14 +117,16 @@
 
         isAutoSlide = true;
         startAutoSlide = function(){
-            window.setTimeout(startAutoSlide, settings.autoSlideTime);
-            if(isAutoSlide){
-                if(currentPage < widthArray.length){
-                    slideToNextPage();
-                }else{
-                    slideToFirstPage();
+            window.setInterval(function(){
+                if(isAutoSlide){
+                    if(currentPage < widthArray.length){
+                        slideToNextPage();
+                    }else{
+                        slideToFirstPage();
+                    }
                 }
-            }
+            }, settings.autoSlideTime);
+
 
         };
 
