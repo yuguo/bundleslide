@@ -69,13 +69,14 @@
         element.after('<a class="'+settings.prevClass+ ' ' + settings.disabledClass +'"><span>Previous</span></a> <a class="'+settings.nextClass+'"><span>Next</span></a>');
         $('.'+settings.nextClass).click(function(e) {
             e.preventDefault();
-            if(currentPage < widthArray.length - 1){
+            if(currentPage < widthArray.length){
                 slideToNextPage();
             }else{
                 slideToFirstPage();
             }
-        }).mouseover(function(){stopAutoSlide()})
-          .mouseout(function(){startAutoSlide()});
+            stopAutoSlide();
+            startAutoSlide();
+        });
 
         $('.'+settings.prevClass).click(function(e) {
             e.preventDefault();
@@ -84,8 +85,9 @@
             }else{
                 //do nothing
             }
-        }).mouseover(function(){stopAutoSlide()})
-          .mouseout(function(){startAutoSlide()});
+            stopAutoSlide();
+            startAutoSlide();
+        });
 
         slideToNextPage = function(){
             $('.sugarslide-controller', element).animate({
@@ -117,15 +119,12 @@
             $('.'+settings.prevClass).addClass(settings.disabledClass);
         };
 
-        isAutoSlide = true;
         startAutoSlide = function(){
             autoSlideInterval = window.setInterval(function(){
-                if(isAutoSlide){
-                    if(currentPage < widthArray.length){
-                        slideToNextPage();
-                    }else{
-                        slideToFirstPage();
-                    }
+                if(currentPage < widthArray.length){
+                    slideToNextPage();
+                }else{
+                    slideToFirstPage();
                 }
             }, settings.autoSlideTime);
 
