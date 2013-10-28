@@ -9,7 +9,7 @@
 
     $.fn.sugarSlide = function( options ) {
 
-        var settings, intFrameWidth, element, widthArray, widthTemp, currentPage, slideToNextPage, slideToPreviousPage, slideToFirstPage, startAutoSlide, isAutoSlide;
+        var settings, intFrameWidth, element, widthArray, widthTemp, currentPage, slideToNextPage, slideToPreviousPage, slideToFirstPage, startAutoSlide, stopAutoSlide, isAutoSlide, autoSlideInterval;
 
         settings = {
             time: 1000,
@@ -28,8 +28,8 @@
         element
             .css('position', 'relative')
             .wrapInner('<div class="sugarslide-controller" style="width:1000%"/>')
-            .mouseover(function(){isAutoSlide = false})
-            .mouseout(function(){isAutoSlide = true});
+            .mouseover(function(){stopAutoSlide()})
+            .mouseout(function(){startAutoSlide()});
 
         $('.sugarslide-controller', element).css({
             'position':'absolute',
@@ -74,7 +74,8 @@
             }else{
                 slideToFirstPage();
             }
-        });
+        }).mouseover(function(){stopAutoSlide()})
+          .mouseout(function(){startAutoSlide()});
 
         $('.'+settings.prevClass).click(function(e) {
             e.preventDefault();
@@ -83,7 +84,8 @@
             }else{
                 //do nothing
             }
-        });
+        }).mouseover(function(){stopAutoSlide()})
+          .mouseout(function(){startAutoSlide()});
 
         slideToNextPage = function(){
             $('.sugarslide-controller', element).animate({
@@ -117,7 +119,7 @@
 
         isAutoSlide = true;
         startAutoSlide = function(){
-            window.setInterval(function(){
+            autoSlideInterval = window.setInterval(function(){
                 if(isAutoSlide){
                     if(currentPage < widthArray.length){
                         slideToNextPage();
@@ -128,6 +130,10 @@
             }, settings.autoSlideTime);
 
 
+        };
+
+        stopAutoSlide = function(){
+            window.clearInterval(autoSlideInterval);
         };
 
         startAutoSlide();

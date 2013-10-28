@@ -1,7 +1,7 @@
 Sugar Slide
 ===========
 
-Sugar Slide can slide with flexible width. [Demo](http://yuguo.us/demo/sugar-slide/index.html).
+Sugar Slide can slide with flexible width. [Demo](http://yuguo.us/demo/sugar-slide/).
 
 ## Start
 
@@ -53,4 +53,4 @@ $('#slide').sugarSlide({
 
 `disabled` is the previous link's class when it's the first slide.
 
-`autoSlideTime` is the gap time of every auto slide(ms).
+`autoSlideTime` is the gap time of every auto slide, default value is 5000(ms).
