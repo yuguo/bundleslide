@@ -58,9 +58,12 @@
             }
 
             if(i == $('.sugarslide-controller', element).children().length - 1){
-                widthArray.push(widthTemp);
+                var j = widthArray.length - 1;
+                widthArray[j] = widthArray[j] + widthTemp - intFrameWidth
             }
         });
+
+        console.log(widthArray);
 
         // next and previous
         currentPage = 0;
@@ -118,7 +121,7 @@
         startAutoSlide = function(){
             window.setTimeout(startAutoSlide, settings.autoSlideTime);
             if(isAutoSlide){
-                if(currentPage < widthArray.length - 1){
+                if(currentPage < widthArray.length){
                     slideToNextPage();
                 }else{
                     slideToFirstPage();
